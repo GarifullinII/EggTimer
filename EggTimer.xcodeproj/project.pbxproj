@@ -13,6 +13,7 @@
 		6E678ACA297DD06C00FE201C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E678AC9297DD06C00FE201C /* Assets.xcassets */; };
 		6E678AD7297DD14300FE201C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E678AD6297DD14300FE201C /* LaunchScreen.storyboard */; };
 		6E678ADB297DDA5400FE201C /* alarm_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6E678ADA297DDA5400FE201C /* alarm_sound.mp3 */; };
+		6E678AE2297DE10900FE201C /* UIStackView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E678AE1297DE10900FE201C /* UIStackView + Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		6E678ACE297DD06C00FE201C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E678AD6297DD14300FE201C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E678ADA297DDA5400FE201C /* alarm_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_sound.mp3; sourceTree = "<group>"; };
+		6E678AE1297DE10900FE201C /* UIStackView + Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				6E678ADC297DDCB200FE201C /* Application */,
 				6E678ADD297DDCCF00FE201C /* Controllers */,
 				6E678ADE297DDCE500FE201C /* Resources */,
+				6E678ADF297DDF0000FE201C /* Extensions */,
 			);
 			path = EggTimer;
 			sourceTree = "<group>";
@@ -89,6 +92,22 @@
 				6E678ACE297DD06C00FE201C /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		6E678ADF297DDF0000FE201C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6E678AE0297DE0F100FE201C /* UIKit */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6E678AE0297DE0F100FE201C /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				6E678AE1297DE10900FE201C /* UIStackView + Extensions.swift */,
+			);
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +184,7 @@
 				6E678AC5297DD06800FE201C /* ViewController.swift in Sources */,
 				6E678AC1297DD06800FE201C /* AppDelegate.swift in Sources */,
 				6E678AC3297DD06800FE201C /* SceneDelegate.swift in Sources */,
+				6E678AE2297DE10900FE201C /* UIStackView + Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
