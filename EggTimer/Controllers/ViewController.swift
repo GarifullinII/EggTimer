@@ -130,8 +130,6 @@ extension ViewController {
             eggStackView.topAnchor.constraint(equalTo: eggLabel.bottomAnchor, constant: 200),
             eggStackView.widthAnchor.constraint(equalToConstant: 380),
             eggStackView.heightAnchor.constraint(equalToConstant: 150)
-            //            eggStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            //            eggStackView.trailingAnchor.constraint(equalTo: view.leadingAnchor, constant: -10),
         ])
     }
 }
