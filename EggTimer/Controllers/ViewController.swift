@@ -9,6 +9,10 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let softTime = 5
+    let mediumTime = 7
+    let hardTime = 12
+    
     private let eggLabel: UILabel = {
         let label = UILabel()
         label.text = "How do you like your eggs?"
@@ -20,28 +24,37 @@ class ViewController: UIViewController {
         return label
     }()
     
-    private let eggOneImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "soft_egg")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+    private let eggSoftButton: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(named: "soft_egg"), for: .normal)
+        button.setTitle("Soft", for: .normal)
+        button.tag = 0
+        button.addTarget(self, action: #selector(keyboardButtonTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
         
-        return imageView
+        return button
     }()
     
-    private let eggTwoImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "medium_egg")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+    private let eggMediumButton: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(named: "medium_egg"), for: .normal)
+        button.setTitle("Medium", for: .normal)
+        button.tag = 1
+        button.addTarget(self, action: #selector(keyboardButtonTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
         
-        return imageView
+        return button
     }()
     
-    private let eggThreeImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "hard_egg")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+    private let eggHardButton: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(named: "hard_egg"), for: .normal)
+        button.setTitle("Hard", for: .normal)
+        button.tag = 2
+        button.addTarget(self, action: #selector(keyboardButtonTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
         
-        return imageView
+        return button
     }()
     
     var eggStackView = UIStackView()
@@ -59,13 +72,23 @@ class ViewController: UIViewController {
         view.addSubview(eggLabel)
         
         eggStackView = UIStackView(
-            arrangedSubviews: [eggOneImageView, eggTwoImageView, eggThreeImageView],
+            arrangedSubviews: [eggSoftButton, eggMediumButton, eggHardButton],
             axis: .horizontal,
             spacing: 10,
             distribution: .fillEqually
         )
         
         view.addSubview(eggStackView)
+    }
+    
+    @objc private func keyboardButtonTapped(sender: UIButton) {
+        if sender.tag == 0 {
+            print(softTime)
+        } else if sender.tag == 1 {
+            print(mediumTime)
+        } else if sender.tag == 2 {
+            print(hardTime)
+        }
     }
 }
 
