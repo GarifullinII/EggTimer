@@ -82,11 +82,20 @@ class ViewController: UIViewController {
     }
     
     @objc private func keyboardButtonTapped(sender: UIButton) {
-        if sender.tag == 0 {
+//        if sender.tag == 0 {
+//            print(softTime)
+//        } else if sender.tag == 1 {
+//            print(mediumTime)
+//        } else if sender.tag == 2 {
+//            print(hardTime)
+//        }
+        
+        switch sender.tag {
+        case 0:
             print(softTime)
-        } else if sender.tag == 1 {
+        case 1:
             print(mediumTime)
-        } else if sender.tag == 2 {
+        case _:
             print(hardTime)
         }
     }
