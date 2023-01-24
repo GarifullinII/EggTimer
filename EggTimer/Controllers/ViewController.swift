@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UIViewController {
     
     let eggTimes = ["Soft": 5, "Medium": 7, "Hard": 12]
+    var timer: Timer?
     
     private let eggLabel: UILabel = {
         let label = UILabel()
@@ -82,44 +83,34 @@ class ViewController: UIViewController {
     @objc private func keyboardButtonTapped(sender: UIButton) {
         let hardness = sender.currentTitle
         
-        //        if sender.tag == 0 {
-        //            print(softTime)
-        //        } else if sender.tag == 1 {
-        //            print(mediumTime)
-        //        } else if sender.tag == 2 {
-        //            print(hardTime)
-        //        }
-        
-        //        switch sender.tag {
-        //        case 0:
-        //            print(softTime)
-        //        case 1:
-        //            print(mediumTime)
-        //        case _:
-        //            print(hardTime)
-        //        }
-        
-        //        if hardness == "Soft" {
-        //            print(softTime)
-        //        } else if hardness == "Medium" {
-        //            print(mediumTime)
-        //        } else {
-        //            print(hardTime)
-        //        }
-        
-        //        for (key, value) in eggTimes {
-        //            if hardness == key {
-        //                print(value)
-        //            }
-        //        }
         if let hardness = hardness {
             guard let eggTimes = eggTimes[hardness] else {
                 return
             }
             print(eggTimes)
+            startCountdown(eggTimes: eggTimes)
+            
         } else {
             print("The button don't have title")
         }
+    }
+    
+    func startCountdown(eggTimes: Int) {
+        var seconds = eggTimes * 60
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+            seconds -= 1
+            if seconds == 0 {
+                print("Bon appetit!")
+                timer.invalidate()
+            } else {
+                print(seconds)
+            }
+        }
+    }
+    
+    deinit {
+        timer?.invalidate()
     }
 }
 
