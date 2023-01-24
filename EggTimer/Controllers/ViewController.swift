@@ -6,16 +6,20 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     
-    let eggTimes = ["Soft": 300, "Medium": 420, "Hard": 720]
+    var player: AVAudioPlayer!
+    
+    let eggTimes = ["Soft": 3, "Medium": 4, "Hard": 7]
     
     var timer = Timer()
     
 //    var timer: Timer?
     
-    var secondRemaining = 60
+    var totalTime = 0
+    var secondsPassed = 0
     
     private let eggLabel: UILabel = {
         let label = UILabel()
@@ -63,6 +67,16 @@ class ViewController: UIViewController {
     
     var eggStackView = UIStackView()
     
+    private let progressView: UIProgressView = {
+        let progress = UIProgressView()
+        progress.trackTintColor = .white
+        progress.progressTintColor = .red
+        progress.setProgress(0, animated: false)
+        progress.translatesAutoresizingMaskIntoConstraints = false
+        
+        return progress
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -83,14 +97,20 @@ class ViewController: UIViewController {
         )
         
         view.addSubview(eggStackView)
+        view.addSubview(progressView)
     }
     
     @objc private func keyboardButtonTapped(sender: UIButton) {
+        
         timer.invalidate()
         
         let hardness = sender.currentTitle!
         
-        secondRemaining = eggTimes[hardness]!
+        totalTime = eggTimes[hardness]!
+        
+        progressView.progress = 0.0
+        secondsPassed = 0
+        eggLabel.text = hardness
         
         timer = Timer.scheduledTimer(
             timeInterval: 1.0,
@@ -111,12 +131,17 @@ class ViewController: UIViewController {
     }
     
     @objc func updateTimer() {
-        if secondRemaining > 0 {
-            print("\(secondRemaining) seconds.")
-            secondRemaining -= 1
+        if secondsPassed < totalTime {
+            
+            secondsPassed += 1
+            
+            let percentageProgress = Float(secondsPassed) / Float(totalTime)
+            
+            progressView.progress = percentageProgress
         } else {
             timer.invalidate()
             eggLabel.text = "Bon appetit!"
+            playSound()
         }
     }
     
@@ -138,6 +163,16 @@ class ViewController: UIViewController {
 //    deinit {
 //        timer?.invalidate()
 //    }
+    
+    private func playSound() {
+        
+        let url = Bundle.main.url(forResource: "alarm_sound", withExtension: "mp3")
+        
+        if let url = url {
+            player = try! AVAudioPlayer(contentsOf: url)
+            player.play()
+        }
+    }
 }
 
 extension ViewController {
@@ -155,6 +190,12 @@ extension ViewController {
             eggStackView.topAnchor.constraint(equalTo: eggLabel.bottomAnchor, constant: 200),
             eggStackView.widthAnchor.constraint(equalToConstant: 380),
             eggStackView.heightAnchor.constraint(equalToConstant: 150)
+        ])
+        
+        NSLayoutConstraint.activate([
+            progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            progressView.topAnchor.constraint(equalTo: eggStackView.bottomAnchor, constant: 100),
+            progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
         ])
     }
 }
