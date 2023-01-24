@@ -9,8 +9,13 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let eggTimes = ["Soft": 5, "Medium": 7, "Hard": 12]
-    var timer: Timer?
+    let eggTimes = ["Soft": 300, "Medium": 420, "Hard": 720]
+    
+    var timer = Timer()
+    
+//    var timer: Timer?
+    
+    var secondRemaining = 60
     
     private let eggLabel: UILabel = {
         let label = UILabel()
@@ -81,37 +86,58 @@ class ViewController: UIViewController {
     }
     
     @objc private func keyboardButtonTapped(sender: UIButton) {
-        let hardness = sender.currentTitle
+        timer.invalidate()
         
-        if let hardness = hardness {
-            guard let eggTimes = eggTimes[hardness] else {
-                return
-            }
-            print(eggTimes)
-            startCountdown(eggTimes: eggTimes)
-            
+        let hardness = sender.currentTitle!
+        
+        secondRemaining = eggTimes[hardness]!
+        
+        timer = Timer.scheduledTimer(
+            timeInterval: 1.0,
+            target: self,
+            selector: #selector(updateTimer),
+            userInfo: nil,
+            repeats: true)
+        
+//        if let hardness = hardness {
+//            guard let eggTimes = eggTimes[hardness] else {
+//                return
+//            }
+//            startCountdown(eggTimes: eggTimes)
+//
+//        } else {
+//            print("The button don't have title")
+//        }
+    }
+    
+    @objc func updateTimer() {
+        if secondRemaining > 0 {
+            print("\(secondRemaining) seconds.")
+            secondRemaining -= 1
         } else {
-            print("The button don't have title")
+            timer.invalidate()
+            eggLabel.text = "Bon appetit!"
         }
     }
     
-    func startCountdown(eggTimes: Int) {
-        var seconds = eggTimes * 60
-        
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-            seconds -= 1
-            if seconds == 0 {
-                print("Bon appetit!")
-                timer.invalidate()
-            } else {
-                print(seconds)
-            }
-        }
-    }
+//    func startCountdown(eggTimes: Int) {
+//
+//        var seconds = eggTimes * 60
+//
+//        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+//            seconds -= 1
+//            if seconds == 0 {
+//                print("Bon appetit!")
+//                timer.invalidate()
+//            } else {
+//                print(seconds)
+//            }
+//        }
+//    }
     
-    deinit {
-        timer?.invalidate()
-    }
+//    deinit {
+//        timer?.invalidate()
+//    }
 }
 
 extension ViewController {
