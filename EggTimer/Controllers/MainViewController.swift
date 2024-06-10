@@ -9,9 +9,8 @@ import UIKit
 
 class MainViewController: UIViewController {
     // MARK: - Property
-    let softTime = 5
-    let mediumTime = 7
-    let hardTime = 12
+    let eggTimes = ["SOFT": 300, "MEDIUM": 420, "HARD": 720]
+    var secondsRemaining = 60
     
     private let mainLabel: UILabel = {
         let label = UILabel()
@@ -92,16 +91,21 @@ class MainViewController: UIViewController {
     }
     
     @objc private func  buttonTapped(_ sender: UIButton) {
-        let hardness = sender.currentTitle
+        let hardness = sender.currentTitle!
         
-        if (hardness == "SOFT") {
-            print("5")
-        } else if (hardness == "MEDIUM") {
-            print("7")
-        } else {
-            print("12")
+        secondsRemaining = eggTimes[hardness]!
+        
+        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateTimer() {
+        if (secondsRemaining > 0) {
+            print("\(secondsRemaining) seconds")
+            secondsRemaining -= 1
         }
     }
+    
+    
 }
 
 // MARK: - SetConstraints
