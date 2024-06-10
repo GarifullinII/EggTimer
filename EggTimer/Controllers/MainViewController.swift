@@ -11,6 +11,7 @@ class MainViewController: UIViewController {
     // MARK: - Property
     let eggTimes = ["SOFT": 300, "MEDIUM": 420, "HARD": 720]
     var secondsRemaining = 60
+    var timer = Timer()
     
     private let mainLabel: UILabel = {
         let label = UILabel()
@@ -91,11 +92,13 @@ class MainViewController: UIViewController {
     }
     
     @objc private func  buttonTapped(_ sender: UIButton) {
+        timer.invalidate()
+        
         let hardness = sender.currentTitle!
         
         secondsRemaining = eggTimes[hardness]!
         
-        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
     
     @objc func updateTimer() {
@@ -104,8 +107,6 @@ class MainViewController: UIViewController {
             secondsRemaining -= 1
         }
     }
-    
-    
 }
 
 // MARK: - SetConstraints
