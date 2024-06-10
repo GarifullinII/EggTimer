@@ -9,7 +9,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     // MARK: - Property
-    let eggTimes = ["SOFT": 300, "MEDIUM": 420, "HARD": 720]
+    let eggTimes = ["SOFT": 3, "MEDIUM": 420, "HARD": 720]
     var secondsRemaining = 60
     var timer = Timer()
     
@@ -105,6 +105,10 @@ class MainViewController: UIViewController {
         if (secondsRemaining > 0) {
             print("\(secondsRemaining) seconds")
             secondsRemaining -= 1
+        } else {
+            timer.invalidate()
+            
+            mainLabel.text = "DONE!!!"
         }
     }
 }
