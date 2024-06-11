@@ -9,8 +9,9 @@ import UIKit
 
 class MainViewController: UIViewController {
     // MARK: - Property
-    let eggTimes = ["SOFT": 3, "MEDIUM": 420, "HARD": 720]
-    var secondsRemaining = 60
+    let eggTimes = ["SOFT": 300, "MEDIUM": 420, "HARD": 720]
+    var totalTime = 0
+    var secondsPassed = 0
     var timer = Timer()
     
     private let mainLabel: UILabel = {
@@ -67,6 +68,15 @@ class MainViewController: UIViewController {
     
     var buttonsStackView = UIStackView()
     
+    private let progressBar: UIProgressView = {
+        let progress = UIProgressView(progressViewStyle: .bar)
+        progress.progressTintColor = .white
+        progress.trackTintColor = .black
+        progress.progress = 0.0
+        progress.translatesAutoresizingMaskIntoConstraints = false
+        return progress
+    }()
+    
     // MARK: - Life cycle funcs
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,22 +99,26 @@ class MainViewController: UIViewController {
             axis: .horizontal,
             spacing: 20)
         view.addSubview(buttonsStackView)
+        
+        view.addSubview(progressBar)
     }
     
     @objc private func  buttonTapped(_ sender: UIButton) {
         timer.invalidate()
-        
+        progressBar.progress = 0
         let hardness = sender.currentTitle!
-        
-        secondsRemaining = eggTimes[hardness]!
+        mainLabel.text = hardness
+        secondsPassed = 0
+        totalTime = eggTimes[hardness]!
         
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
     
     @objc func updateTimer() {
-        if (secondsRemaining > 0) {
-            print("\(secondsRemaining) seconds")
-            secondsRemaining -= 1
+        if (secondsPassed < totalTime) {
+            secondsPassed += 1
+            let percentageProgress = Float(secondsPassed) / Float(totalTime)
+            progressBar.progress = percentageProgress
         } else {
             timer.invalidate()
             
@@ -135,6 +149,12 @@ extension MainViewController {
         NSLayoutConstraint.activate([
             buttonsStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             buttonsStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
+        NSLayoutConstraint.activate([
+            progressBar.topAnchor.constraint(equalTo: buttonsStackView.bottomAnchor, constant: 40),
+            progressBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            progressBar.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            progressBar.heightAnchor.constraint(equalToConstant: 6),
         ])
     }
 }

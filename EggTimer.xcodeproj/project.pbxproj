@@ -12,6 +12,7 @@
 		6E6487212C10A58500BE948F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6487202C10A58500BE948F /* MainViewController.swift */; };
 		6E6487262C10A58600BE948F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E6487252C10A58600BE948F /* Assets.xcassets */; };
 		6E6487292C10A58600BE948F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E6487272C10A58600BE948F /* LaunchScreen.storyboard */; };
+		6E849EAD2C18A81000AF371F /* alarm_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6E849EAC2C18A81000AF371F /* alarm_sound.mp3 */; };
 		6E96DF462C11C85300901A34 /* UIFont + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E96DF452C11C85300901A34 /* UIFont + Extensions.swift */; };
 		6E96DF4A2C11C88400901A34 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E96DF482C11C88400901A34 /* Roboto-Bold.ttf */; };
 		6E96DF4B2C11C88400901A34 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E96DF492C11C88400901A34 /* Roboto-Medium.ttf */; };
@@ -26,6 +27,7 @@
 		6E6487252C10A58600BE948F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E6487282C10A58600BE948F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E64872A2C10A58600BE948F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E849EAC2C18A81000AF371F /* alarm_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_sound.mp3; sourceTree = "<group>"; };
 		6E96DF452C11C85300901A34 /* UIFont + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extensions.swift"; sourceTree = "<group>"; };
 		6E96DF482C11C88400901A34 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		6E96DF492C11C88400901A34 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		6E6487362C10A68000BE948F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6E849EAC2C18A81000AF371F /* alarm_sound.mp3 */,
 				6E96DF472C11C87200901A34 /* Fonts */,
 				6E6487252C10A58600BE948F /* Assets.xcassets */,
 				6E6487272C10A58600BE948F /* LaunchScreen.storyboard */,
@@ -199,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E96DF4B2C11C88400901A34 /* Roboto-Medium.ttf in Resources */,
+				6E849EAD2C18A81000AF371F /* alarm_sound.mp3 in Resources */,
 				6E6487292C10A58600BE948F /* LaunchScreen.storyboard in Resources */,
 				6E6487262C10A58600BE948F /* Assets.xcassets in Resources */,
 				6E96DF4A2C11C88400901A34 /* Roboto-Bold.ttf in Resources */,
