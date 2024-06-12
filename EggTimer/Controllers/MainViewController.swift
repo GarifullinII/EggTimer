@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class MainViewController: UIViewController {
     // MARK: - Property
@@ -13,6 +14,7 @@ class MainViewController: UIViewController {
     var totalTime = 0
     var secondsPassed = 0
     var timer = Timer()
+    var player: AVAudioPlayer?
     
     private let mainLabel: UILabel = {
         let label = UILabel()
@@ -123,6 +125,20 @@ class MainViewController: UIViewController {
             timer.invalidate()
             
             mainLabel.text = "DONE!!!"
+            playSound(soundName: "alarm_sound")
+        }
+    }
+    
+    private func playSound(soundName: String) {
+        guard let url = Bundle.main.url(forResource: "\(soundName)", withExtension: "mp3") else { return }
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            guard let player = player else { return }
+            player.play()
+        } catch let error {
+            print(error.localizedDescription)
         }
     }
 }
